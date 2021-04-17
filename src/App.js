@@ -13,7 +13,7 @@ class App extends Component {
         <AddTodo/>
         <hr className="my-4" />
         <div className="card">
-          <div className="card-header d-flex flex-row align-items-center">
+          <div className="card-header d-flex flex-row align-items-center list-group-item-action">
             <span className="flex-fill">Todo list</span>
            <Filter/>
           </div>
