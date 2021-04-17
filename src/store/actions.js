@@ -1,7 +1,7 @@
-const ADD_TODO = "add todo";
-const DELETE_TODO = "delete todo";
-const SET_FILTER = "set filter";
-const TOGGLE_TODO = "toggle todo";
+export const DELETE_TODO = "delete todo";
+export const ADD_TODO = "add todo";
+export const SET_FILTER = "set filter";
+export const TOGGLE_TODO = "toggle todo";
 
 export const visibilityFilter = {
   SHOW_ALL: "SHOW_ALL",
