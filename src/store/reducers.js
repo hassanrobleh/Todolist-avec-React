@@ -1,5 +1,4 @@
 import * as actions from "./actions";
-import { combineReducers } from "redux";
 /* {
     todos: [],
     filter: ''
@@ -11,7 +10,7 @@ import { combineReducers } from "redux";
 //     done: true | false;
 // }
 
-const todos = (state = [], action) => {
+export const todos = (state = [], action) => {
   switch (action.type) {
     case actions.ADD_TODO: {
       return [...state, action.todo];
@@ -35,7 +34,7 @@ const todos = (state = [], action) => {
   }
 };
 
-const filter = (state = actions.visibilityFilter.SHOW_ALL, action) => {
+export const filter = (state = actions.visibilityFilter.SHOW_ALL, action) => {
   switch (action.type) {
     case actions.SET_FILTER: {
       return action.filter;
@@ -53,7 +52,4 @@ const filter = (state = actions.visibilityFilter.SHOW_ALL, action) => {
   };
 }; */
 
-export const todoReducers = combineReducers({
-  todos,
-  filter,
-});
+
