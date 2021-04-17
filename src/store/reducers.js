@@ -10,42 +10,44 @@ import * as actions from "./actions";
 //     done: true | false;
 // }
 
-export const todoReducer = (state, action) => {
+const todoReducer = (state, action) => {
   switch (action.type) {
     case actions.ADD_TODO: {
-      return {
-        ...state,
-        todos: [...state.todos, action.todo],
-      };
+      return [...state, action.todo];
     }
     case actions.DELETE_TODO: {
-      return {
-        ...state,
-        todos: state.todos.filter((t, i) => i !== action.index),
-      };
-    }
-
-    case actions.SET_FILTER: {
-      return {
-        ...state,
-        filter: action.filter,
-      };
+      return state.filter((t, i) => i !== action.index);
     }
 
     case actions.TOGGLE_TODO: {
-      return {
-        ...state,
-        todos: state.todos.map((t, i) => {
-          if (i === action.index) {
-            t.done = !t.done;
-          }
-          return t;
-        }),
-      };
+      return state.map((t, i) => {
+        if (i === action.index) {
+          t.done = !t.done;
+        }
+        return t;
+      });
     }
 
     default: {
       return state;
     }
   }
+};
+
+const filterReducer = (state, action) => {
+  switch (action.type) {
+    case actions.SET_FILTER: {
+      return action.filter;
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
+export const todoReducers = (state, action) => {
+  return {
+    todos: todoReducer(state.todos, action),
+    filter: filterReducer(state.filter, action),
+  };
 };
