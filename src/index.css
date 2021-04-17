@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  height: 100vh;
+}
+
+.title {
+  font-size: 150px;
+}
+
+.active {
+  font-weight: bold !important;
+}
