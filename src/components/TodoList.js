@@ -13,7 +13,7 @@ const TodoList = ({ todos }) => {
 };
 
 export default connect((state) => {
-  console.log({ state });
+  //console.log({ state });
   const filter = state.filter;
   let todos;
   switch (filter) {
