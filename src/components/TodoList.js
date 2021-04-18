@@ -1,36 +1,50 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 import { connect } from "react-redux";
-import { visibilityFilter } from "../store/actions";
+import { visibilityFilter, toggleTodo, deleteTodo } from "../store/actions";
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, deleteTodo, toggleTodo }) => {
+  // console.log('test');
   return (
     <ul className="list-group">
-      {todos.state &&
-        todos.todos.map((t) => <TodoItem keys={t.name} todos={t} />)}
+      {todos &&
+        todos.map((t, i) => (
+          <TodoItem
+            key={t.name}
+            todo={t}
+            deleteTodo={() => deleteTodo(i)}
+            toggleTodo={() => toggleTodo(i)}
+          />
+        ))}
     </ul>
   );
 };
 
-export default connect((state) => {
-  //console.log({ state });
-  const filter = state.filter;
-  let todos;
-  switch (filter) {
-    case visibilityFilter.SHOW_DONE: {
-      todos = state.todos.filter((t) => t.done);
-      break;
+export default connect(
+  (state) => {
+    //console.log({ state });
+    const filter = state.filter;
+    let todos;
+    switch (filter) {
+      case visibilityFilter.SHOW_DONE: {
+        todos = state.todos.filter((t) => t.done);
+        break;
+      }
+      case visibilityFilter.SHOW_ACTIVE: {
+        todos = state.todos.filter((t) => !t.done);
+        break;
+      }
+      default: {
+        todos = state.todos;
+        break;
+      }
     }
-    case visibilityFilter.SHOW_ACTIVE: {
-      todos = state.todos.filter((t) => !t.done);
-      break;
-    }
-    default: {
-      todos = state.todos;
-      break;
-    }
+    return {
+      todos,
+    };
+  },
+  {
+    toggleTodo,
+    deleteTodo,
   }
-  return {
-    todos,
-  };
-})(TodoList);
+)(TodoList);
