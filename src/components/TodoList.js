@@ -3,7 +3,7 @@ import TodoItem from "./TodoItem";
 import { connect } from "react-redux";
 import { visibilityFilter } from "../store/actions";
 
-const TodoList = ({todos}) => {
+const TodoList = ({ todos }) => {
   return (
     <ul className="list-group">
       {todos.state &&
@@ -13,6 +13,7 @@ const TodoList = ({todos}) => {
 };
 
 export default connect((state) => {
+  console.log({ state });
   const filter = state.filter;
   let todos;
   switch (filter) {
