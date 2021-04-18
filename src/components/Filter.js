@@ -27,10 +27,6 @@ const Filter = ({ setFilter }) => {
   );
 };
 
-export default connect(null, (dispatch) => {
-  return {
-    setFilter: (filter) => {
-      dispatch(setFilter(filter));
-    },
-  };
+export default connect(null, {
+  setFilter
 })(Filter);
