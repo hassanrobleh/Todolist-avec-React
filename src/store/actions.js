@@ -3,6 +3,11 @@ export const ADD_TODO = "add todo";
 export const SET_FILTER = "set filter";
 export const TOGGLE_TODO = "toggle todo";
 
+export const REQUEST_TODO = "request todo";
+export const FETCH_TODO = "fetch todo";
+export const FETCH_TODO_SUCCESS = "fetch todo success";
+export const FETCH_TODO_ERROR = "fetch todo error";
+
 export const visibilityFilter = {
   SHOW_ALL: "SHOW_ALL",
   SHOW_DONE: "SHOW_DONE",
@@ -34,5 +39,25 @@ export const toggleTodo = (index) => {
   return {
     type: TOGGLE_TODO,
     index,
+  };
+};
+
+export const requestTodo = () => {
+  return {
+    type: REQUEST_TODO,
+  };
+};
+
+export const fetchTodoSuccess = (todos) => {
+  return {
+    type: FETCH_TODO_SUCCESS,
+    todos,
+  };
+};
+
+export const fetchTodoError = (error) => {
+  return {
+    type: FETCH_TODO_ERROR,
+    error,
   };
 };

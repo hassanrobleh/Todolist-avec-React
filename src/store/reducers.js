@@ -4,28 +4,73 @@ import * as actions from "./actions";
     filter: ''
 } */
 
+/* {
+  todos: {
+    data: [],
+    loading: false,
+    error: null,
+  },
+  filter: 'SHOW_ALL'
+} */
+
 //ToggleTodo
 // {
 //     name:'',
 //     done: true | false;
 // }
 
-export const todos = (state = [], action) => {
+export const todos = (
+  state = {
+    data: [],
+    loading: false,
+    error: null,
+  },
+  action
+) => {
   switch (action.type) {
     case actions.ADD_TODO: {
-      return [...state, action.todo];
+      return {
+        ...state,
+        data: [...state.data, action.todo],
+      };
     }
+
     case actions.DELETE_TODO: {
-      return state.filter((t, i) => i !== action.index);
+      return {
+        ...state,
+        data: state.filter((t, i) => i !== action.index),
+      };
     }
 
     case actions.TOGGLE_TODO: {
-      return state.map((t, i) => {
-        if (i === action.index) {
-          t.done = !t.done;
-        }
-        return t;
-      });
+      return {
+        ...state,
+        data: state.map((t, i) =>
+          i === action.index ? { ...t, done: !t.done } : t
+        ),
+      };
+    }
+
+    case actions.REQUEST_TODO: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+
+    case actions.FETCH_TODO_SUCCESS: {
+      return {
+        ...state,
+        data: [...state.data, action.todos],
+        error: null,
+      };
+    }
+
+    case actions.FETCH_TODO_ERROR: {
+      return {
+        ...state,
+        error: action.error,
+      };
     }
 
     default: {
@@ -51,5 +96,3 @@ export const filter = (state = actions.visibilityFilter.SHOW_ALL, action) => {
     filter: filterReducer(state.filter, action),
   };
 }; */
-
-
