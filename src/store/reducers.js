@@ -28,10 +28,17 @@ export const todos = (
   action
 ) => {
   switch (action.type) {
-    case actions.ADD_TODO: {
+    case actions.ADD_TODO_SUCCESS: {
       return {
         ...state,
         data: [...state.data, action.todo],
+      };
+    }
+
+    case actions.ADD_TODO_ERROR: {
+      return {
+        ...state,
+        error: action.error,
       };
     }
 
@@ -45,7 +52,7 @@ export const todos = (
     case actions.TOGGLE_TODO: {
       return {
         ...state,
-        data: state.map((t, i) =>
+        data: state.data.map((t, i) =>
           i === action.index ? { ...t, done: !t.done } : t
         ),
       };
@@ -59,16 +66,25 @@ export const todos = (
     }
 
     case actions.FETCH_TODO_SUCCESS: {
-      return {
-        ...state,
-        data: [...state.data, action.todos],
-        error: null,
-      };
+      if (action.todos) {
+        return {
+          ...state,
+          data: action.todos,
+          loading: false,
+          error: null,
+        };
+      } else {
+        return {
+          ...state,
+          loading: false,
+        };
+      }
     }
 
     case actions.FETCH_TODO_ERROR: {
       return {
         ...state,
+        loading: false,
         error: action.error,
       };
     }
