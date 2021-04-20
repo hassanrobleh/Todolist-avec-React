@@ -1,7 +1,6 @@
 import apiFirebase from "../config/api.firebase";
 
 export const DELETE_TODO = "delete todo";
-export const SET_FILTER = "set filter";
 export const TOGGLE_TODO = "toggle todo";
 
 export const TRY_ADD_TODO = "try add todo";
@@ -12,12 +11,6 @@ export const REQUEST_TODO = "request todo";
 export const FETCH_TODO = "fetch todo";
 export const FETCH_TODO_SUCCESS = "fetch todo success";
 export const FETCH_TODO_ERROR = "fetch todo error";
-
-export const visibilityFilter = {
-  SHOW_ALL: "SHOW_ALL",
-  SHOW_DONE: "SHOW_DONE",
-  SHOW_ACTIVE: "SHOW_ACTIVE",
-};
 
 export const tryAddTodo = (todo) => {
   return (dispatch, getState) => {
@@ -47,13 +40,6 @@ export const deleteTodo = (index) => {
   return {
     type: DELETE_TODO,
     index,
-  };
-};
-
-export const setFilter = (filter) => {
-  return {
-    type: SET_FILTER,
-    filter,
   };
 };
 

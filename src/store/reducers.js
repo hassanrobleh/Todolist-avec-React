@@ -95,17 +95,6 @@ export const todos = (
   }
 };
 
-export const filter = (state = actions.visibilityFilter.SHOW_ALL, action) => {
-  switch (action.type) {
-    case actions.SET_FILTER: {
-      return action.filter;
-    }
-    default: {
-      return state;
-    }
-  }
-};
-
 /* export const todoReducers = (state, action) => {
   return {
     todos: todoReducer(state.todos, action),

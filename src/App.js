@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import AddTodo from "./components/AddTodo";
 import Filter from "./components/Filter";
 import TodoList from "./components/TodoList";
-
 
 class App extends Component {
   render() {
@@ -10,15 +10,18 @@ class App extends Component {
       <div className="container p-5">
         <h4>Ajouter une todo</h4>
         <hr className="my-4" />
-        <AddTodo/>
+        <AddTodo />
         <hr className="my-4" />
         <div className="card">
           <div className="card-header d-flex flex-row align-items-center list-group-item-action">
             <span className="flex-fill">Todo list</span>
-           <Filter/>
+            <Filter />
           </div>
           <div className="card-body">
-            <TodoList/>
+            <Switch>
+              <Route path="/:filter" component={ TodoList} />
+              <Redirect to="/all" />
+            </Switch>
           </div>
         </div>
       </div>

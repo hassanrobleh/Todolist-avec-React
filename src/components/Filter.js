@@ -1,32 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
-import { setFilter, visibilityFilter } from "../store/actions";
+import { Link } from "react-router-dom";
 
-const Filter = ({ setFilter }) => {
+const Filter = (props) => {
   return (
     <>
-      <button
-        className="btn btn-primary mr-2"
-        onClick={() => setFilter(visibilityFilter.SHOW_ALL)}
-      >
-        Tout
-      </button>
-      <button
-        className="btn btn-primary mr-2"
-        onClick={() => setFilter(visibilityFilter.SHOW_DONE)}
-      >
-        Fini
-      </button>
-      <button
-        className="btn btn-primary"
-        onClick={() => setFilter(visibilityFilter.SHOW_ACTIVE)}
-      >
-        En cours
-      </button>
+      <Link to="/all" className="btn btn-primary mr-2">Tout</Link>
+      <Link to="/done" className="btn btn-primary mr-2">Fini</Link>
+      <Link to="/active" className="btn btn-primary">En cours</Link>
     </>
   );
 };
 
-export default connect(null, {
-  setFilter
-})(Filter);
+export default Filter;

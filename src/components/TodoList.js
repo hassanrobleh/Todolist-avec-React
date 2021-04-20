@@ -31,12 +31,13 @@ class TodoList extends Component {
 }
 
 export default connect(
-  (state) => {
+  (state, ownProps) => {
     //console.log({ state });
     // const filter = state.filter;
     // let todos;
+    const filter = ownProps.match.params.filter;
     return {
-      todos: filteredTodoDataSelector(state),
+      todos: filteredTodoDataSelector(state, filter),
     };
   },
   {
